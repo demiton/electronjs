@@ -1,15 +1,23 @@
-var glob = require('glob'),
-console.log('test');
+const {ipcRenderer} = require('electron')
+
+ipcRenderer.on('available-file', (event, path) => {
+  document.getElementById('available-file').innerHTML = `Fichiers Dispo`
+})
+
+
+//var glob = require('glob');
+//console.log('test');
 // some options
+/*
 options = {
     cwd: 'node_modules'
 },
-
+*/
 // for Files
-forFiles = function(err,files){ console.log(files);};
+//forFiles = function(err,files){ console.log(files);};
 
 // glob it.
-glob('**/*.md', options, forFiles);
+//glob('**/*.md', options, forFiles);
 
 
 

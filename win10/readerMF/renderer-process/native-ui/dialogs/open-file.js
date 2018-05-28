@@ -9,3 +9,7 @@ selectDirBtn.addEventListener('click', (event) => {
 ipcRenderer.on('selected-directory', (event, path) => {
   document.getElementById('selected-file').innerHTML = `You selected: ${path}`
 })
+
+ipcRenderer.on('selected-directory-2', (event, path) => {
+  document.getElementById('selected-file').innerHTML = `You selected: ${path}`
+})

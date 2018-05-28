@@ -1,6 +1,15 @@
+//require('devtron').install()
+
+
 const path = require('path')
 const glob = require('glob')
 const {app, BrowserWindow} = require('electron')
+
+//Afficher les outils de devtron
+require('electron-debug')({showDevTools: true});
+
+
+
 const autoUpdater = require('./auto-updater')
 
 const debug = /--debug/.test(process.argv[2])
