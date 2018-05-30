@@ -6,6 +6,8 @@ const selectDirBtn = document.getElementById('select-directory')
 
 const selectDirBtn2 = document.getElementById('select-directory-2')
 
+const selectFileBtn = document.getElementById('available-file')
+
 /*selectDirBtn.addEventListener('click', (event) => {
   ipcRenderer.send('open-file-dialog')
 })
@@ -20,4 +22,11 @@ ipcRenderer.on('selected-directory', (event, path) => {
 
 ipcRenderer.on('selected-directory-2', (event, path) => {
   document.getElementById('selected-file-2').innerHTML = `You selected: ${path}`
+})
+
+
+selectFileBtn.addEventListener('click', (event) => {
+  var content = selectFileBtn.innerHTML;
+
+  ipcRenderer.send('read-file',content);
 })

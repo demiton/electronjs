@@ -1,0 +1,22 @@
+/* Demo */
+.roundedCorner
+{
+  border-radius: 5px;
+   border: 2px solid #73AD21;
+   padding: 20px;
+   width: 200px;
+   height: 150px;
+ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.item {
+
+  width: 100%;
+  padding: 1rem 2rem;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  margin-left: 1rem;
+  margin-right : 1rem;
+}

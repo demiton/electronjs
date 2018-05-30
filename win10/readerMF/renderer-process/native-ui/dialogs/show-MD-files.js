@@ -1,10 +1,32 @@
 const {ipcRenderer} = require('electron')
 
-ipcRenderer.on('available-file', (event, path) => {
-  document.getElementById('available-file').innerHTML = `Fichiers Dispo`
-})
+ipcRenderer.on('available-file', (event, list) => {
+  document.getElementById('available-file').textContent = `Fichiers disponibles : `
+  console.log('list size: '+list.length);
+  if(list.length>0){
 
+    for(var i in list){
+      var node = document.createElement("button");
+      node.className='item roundedCorner';
+      node.setAttribute('id','select-file');
+      var textnode = document.createTextNode(list[i]);
+        node.appendChild(textnode);
+        document.getElementById("available-file").appendChild(node);
+    }
 
+  }
+    else{
+      var node = document.createElement("LI");
+      var textnode = document.createTextNode('Aucun Fichiers');
+        node.appendChild(textnode);
+        document.getElementById('available-file').appendChild(node);
+    }
+});
+
+ipcRenderer.on('chosen-file', (event, content) => {
+  document.getElementById('chosen-file').textContent = content
+
+});
 //var glob = require('glob');
 //console.log('test');
 // some options

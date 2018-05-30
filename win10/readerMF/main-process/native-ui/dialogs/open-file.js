@@ -56,6 +56,16 @@ ipcMain.on('open-file-dialog-2', (event) => {
         console.log('-> '+liste[i])
       }
       event.sender.send('selected-directory-2', files)
+      event.sender.send('available-file', liste)
     }
   })
+})
+
+
+
+ipcMain.on('read-file', (event, content) => {
+var liste=content;
+
+      event.sender.send('chosen-file', liste)
+
 })
