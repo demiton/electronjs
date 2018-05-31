@@ -1,3 +1,5 @@
+var $ = require('jquery');
+var selectedId ='';
 const {ipcRenderer} = require('electron')
 
 
@@ -6,7 +8,7 @@ const selectDirBtn = document.getElementById('select-directory')
 
 const selectDirBtn2 = document.getElementById('select-directory-2')
 
-const selectFileBtn = document.getElementById('available-file')
+
 
 /*selectDirBtn.addEventListener('click', (event) => {
   ipcRenderer.send('open-file-dialog')
@@ -25,8 +27,22 @@ ipcRenderer.on('selected-directory-2', (event, path) => {
 })
 
 
-selectFileBtn.addEventListener('click', (event) => {
-  var content = selectFileBtn.innerHTML;
 
-  ipcRenderer.send('read-file',content);
-})
+
+
+
+
+$(document).on('mouseover', 'button', function(e) {
+    console.log($(e.target).attr('id'));
+    selectedId = $(e.target).attr('id');
+    console.log(selectedId);
+    if(String(selectedId).indexOf('select-file')!=-1){
+      const selectFileBtn = document.getElementById(selectedId);
+      selectFileBtn.addEventListener('click', (event) => {
+        var content = selectFileBtn.innerHTML;
+        ipcRenderer.send('read-file',content);
+      })
+    }
+
+});
+//$(".item").mouseleave(handler);

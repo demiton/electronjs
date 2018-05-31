@@ -4,11 +4,10 @@ ipcRenderer.on('available-file', (event, list) => {
   document.getElementById('available-file').textContent = `Fichiers disponibles : `
   console.log('list size: '+list.length);
   if(list.length>0){
-
     for(var i in list){
       var node = document.createElement("button");
-      node.className='item roundedCorner';
-      node.setAttribute('id','select-file');
+      node.className='item roundedCorner nav-button';
+      node.setAttribute('id','select-file-'+i);
       var textnode = document.createTextNode(list[i]);
         node.appendChild(textnode);
         document.getElementById("available-file").appendChild(node);
