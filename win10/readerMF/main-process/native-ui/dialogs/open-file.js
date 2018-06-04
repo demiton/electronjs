@@ -69,5 +69,6 @@ var text = fs.readFileSync(content,'latin1')
 //console.log ('text :'+ text);
       event.sender.send('chosen-file', text)
       event.sender.send('edited-file', text)
+      event.sender.send('modification', text)
 
 })
