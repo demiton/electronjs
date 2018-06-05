@@ -37,17 +37,37 @@ ipcRenderer.on('edited-file', (event, content) => {
 
 ipcRenderer.on('modification', (event, content) => {
   var x = document.createElement("TEXTAREA");
-  x.className='txt-box';
+  x.className='txt-box m-3';
 
   var t = document.createTextNode(content);
   x.appendChild(t);
+  document.getElementById('modification').innerHTML = '';
   document.getElementById('modification').appendChild(x);
 
   // on ajoute aussi les boutons de modification
   var node = document.createElement("button");
-  node.className='demo-button';
+  node.className='demo-button m-3';
+  node.setAttribute('id','action-preview');
   //node.setAttribute('id','select-file-'+i);
-  var textnode = document.createTextNode('recharger');
+  var textnode = document.createTextNode('Prévisualiser');
   node.appendChild(textnode);
-  document.getElementById("button-modification").appendChild(node);
+  document.getElementById('button-modification').innerHTML='';
+  document.getElementById('button-modification').appendChild(node);
+  //
+  var nodeV = document.createElement("button");
+  nodeV.className='demo-button m-3';
+  nodeV.setAttribute('id','action-reload');
+  //node.setAttribute('id','select-file-'+i);
+  var textnodeV = document.createTextNode('Recharger');
+  nodeV.appendChild(textnodeV);
+  document.getElementById('button-modification').appendChild(nodeV);
+  //
+  var nodeS = document.createElement("button");
+  nodeS.className='demo-button m-3';
+  nodeS.setAttribute('id','action-save');
+  var textnodeS = document.createTextNode('Sauvegarder');
+  nodeS.appendChild(textnodeS);
+  document.getElementById('button-modification').appendChild(nodeS);
+//
+
   });
