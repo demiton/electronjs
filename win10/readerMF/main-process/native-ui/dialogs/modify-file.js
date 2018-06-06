@@ -11,6 +11,7 @@ const path = require('path');
 ipcMain.on('action-preview', (event, content) => {
   console.log('Action Preview');
   var text = content;
+  console.log('Content : '+content);
   //console.log(text);
       event.sender.send('edited-file', text)
 })

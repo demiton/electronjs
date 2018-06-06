@@ -38,11 +38,12 @@ ipcRenderer.on('edited-file', (event, content) => {
 ipcRenderer.on('modification', (event, content) => {
   var x = document.createElement("TEXTAREA");
   x.className='txt-box m-3';
+  x.id = 'txt-box';
 
   var t = document.createTextNode(content);
   x.appendChild(t);
-  document.getElementById('modification').innerHTML = '';
-  document.getElementById('modification').appendChild(x);
+  document.getElementById('text-modification').innerHTML = '';
+  document.getElementById('text-modification').appendChild(x);
 
   // on ajoute aussi les boutons de modification
   var node = document.createElement("button");

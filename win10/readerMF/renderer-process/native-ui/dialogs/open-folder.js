@@ -44,40 +44,41 @@ $(document).on('mouseover', 'button', function(e) {
     })
   }
   else if(String(selectedId).indexOf('action')!=-1){
-
-    switch (selectedId) {
-      case 'action-preview':
-      const selectPreviewButton = document.getElementById(selectedId);
-      console.log('action-preview');
-      console.log(document.getElementById('modification').innerHTML);
-      selectPreviewButton.addEventListener('click', (event) => {
-        console.log('yes');
-        var content = document.getElementById('modification').textContent;
-
-        ipcRenderer.send('action-preview',content);
-      })
-      break;
-      case 'action-reload':
-      console.log('action-reload');
-      const selectReloadButton = document.getElementById(selectedId);
-      selectReloadButton.addEventListener('click', (event) => {
-        var content = document.getElementById('chosen-file').innerHTML;
-        ipcRenderer.send('action-reload',content);
-      })
-      break;
-      case 'action-save':
-      console.log('action-save');
-      const selectSaveButton = document.getElementById('action-save');
-      selectSaveButton.addEventListener('click', (event) => {
-        var content =  document.getElementById('modification').innerHTML;
-        ipcRenderer.send('action-save',content);
-      })
-      break;
-      default:
-      console.log('Aucune action associée à ' + expr + '.');
+    document.getElementById('modification').addEventListener('click', (event) => {
+      console.log('event target: '+event.target.id);
+      if(event.target.id != 'txt-box'){
+        var expr = event.target.id;
+        switch (expr) {
+          case 'action-preview':
+            const selectPreviewButton = document.getElementById(selectedId);
+            console.log('action-preview');
+            console.log(document.getElementById('text-modification').innerHTML);
+            var content = $('#txt-box').val();
+            console.log(content);
+            ipcRenderer.send('action-preview',content);
+            break;
+          case 'action-reload':
+          console.log('action-reload');
+            var content = document.getElementById('chosen-file').innerHTML;
+            ipcRenderer.send('action-reload',content);
+          break;
+          case 'action-save':
+            console.log('action-save');
+            var content =  document.getElementById('text-modification').innerHTML;
+            ipcRenderer.send('action-save',content);
+            break;
+          default:
+          console.log('Aucune action associée à ' + expr + '.');
 
 
-    }
+        }
+      }
+
+
+
+
+    });
+
 
   }
 
