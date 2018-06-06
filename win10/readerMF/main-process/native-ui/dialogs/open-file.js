@@ -66,8 +66,9 @@ ipcMain.on('open-file-dialog-2', (event) => {
 ipcMain.on('read-file', (event, content) => {
 var liste=content;
 var text = fs.readFileSync(content,'latin1')
+var path = content;
 //console.log ('text :'+ text);
-      event.sender.send('chosen-file', text)
+      event.sender.send('chosen-file', text,path)
       event.sender.send('edited-file', text)
       event.sender.send('modification', text)
 

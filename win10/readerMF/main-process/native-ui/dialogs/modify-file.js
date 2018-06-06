@@ -20,4 +20,20 @@ ipcMain.on('action-reload', (event, content) => {
   console.log('Action Reload');
   var text = content;
       event.sender.send('edited-file', text)
+      event.sender.send('modification', text)
+})
+
+ipcMain.on('action-save', (event, content,path) => {
+  console.log('Action Save');
+  var text = content;
+  console.log('path : '+path);
+  console.log('content : '+content);
+  fs.writeFile(path, text , 'latin1', function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+});
+
 })

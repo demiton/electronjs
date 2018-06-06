@@ -24,8 +24,11 @@ ipcRenderer.on('available-file', (event, list) => {
   }
 });
 
-ipcRenderer.on('chosen-file', (event, content) => {
+ipcRenderer.on('chosen-file', (event, content,path) => {
   document.getElementById('chosen-file').textContent = content
+  var att = document.createAttribute("data-pathFile");        // Create a "href" attribute
+  att.value = path;
+  document.getElementById('chosen-file').setAttributeNode(att);     
 
 });
 

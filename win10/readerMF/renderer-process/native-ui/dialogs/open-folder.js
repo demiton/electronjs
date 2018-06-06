@@ -64,13 +64,13 @@ $(document).on('mouseover', 'button', function(e) {
           break;
           case 'action-save':
             console.log('action-save');
-            var content =  document.getElementById('text-modification').innerHTML;
-            ipcRenderer.send('action-save',content);
+            var content = $('#txt-box').val();
+            var path = document.getElementById('chosen-file').dataset.pathfile;
+              console.log('path : '+path);
+            ipcRenderer.send('action-save',content,path);
             break;
           default:
           console.log('Aucune action associée à ' + expr + '.');
-
-
         }
       }
 
