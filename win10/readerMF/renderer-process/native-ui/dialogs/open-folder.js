@@ -14,8 +14,30 @@ const selectDirBtn2 = document.getElementById('select-directory-2')
 ipcRenderer.send('open-file-dialog')
 })
 */
+
+/// Repetition avec controls.js a revoir
+// reference vers les checbox
+var el = document.getElementById('checkbox-type');
+var boxList = el.getElementsByTagName('input'); // onrécupère la liste des inputs
+
+
+function selectedExtension(e){
+var extension ='';
+for (var i=0, len=boxList.length; i<len; i++) {
+    if ( boxList[i].checked) {
+        extension = boxList[i].value;
+    }
+}
+  return extension;
+}
+
+
 selectDirBtn2.addEventListener('click', (event) => {
-  ipcRenderer.send('open-file-dialog-2')
+ // on choisit l'extension à filtrer
+ //var extension = '.'+selectedExtension();
+ var ext = '.txt';
+console.log(ext);
+  ipcRenderer.send('open-file-dialog-2',ext)
 })
 
 ipcRenderer.on('selected-directory', (event, path) => {

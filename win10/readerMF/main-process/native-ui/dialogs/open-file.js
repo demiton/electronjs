@@ -10,17 +10,40 @@ const path = require('path');
 /// filtrer les Fichiers
 const extFilter ='txt';
 function extension(element) {
+
+
   var extName = path.extname(element);
   return extName === '.' + extFilter;
 };
 
 // retourner la liste des Fichiers
-const walkSync = function(dir, filelist) {
+const walkSync = function(dir, filelist,ext) {
   console.log('dir : '+dir+'filelist :'+filelist);
             var path = path || require('path');
             var fs = fs || require('fs'),
                 files = fs.readdirSync(dir);
             filelist = filelist || [];
+            // pour connaitre l'extension à choisir, on va regarder les checkboxes
+            files.filter(ext).forEach(function(file) {
+                if (fs.statSync(path.join(dir, file)).isDirectory()) {
+                    filelist = walkSync(path.join(dir, file), filelist);
+                }
+                else {
+                    filelist.push(path.join(dir, file));
+                }
+            });
+            return filelist;
+        };
+//https://gist.github.com/kethinov/6658166
+
+// retourner la liste des Fichiers
+const walkSync2 = function(dir, filelist) {
+  console.log('dir : '+dir+'filelist :'+filelist);
+            var path = path || require('path');
+            var fs = fs || require('fs'),
+                files = fs.readdirSync(dir);
+            filelist = filelist || [];
+            // pour connaitre l'extension à choisir, on va regarder les checkboxes
             files.filter(extension).forEach(function(file) {
                 if (fs.statSync(path.join(dir, file)).isDirectory()) {
                     filelist = walkSync(path.join(dir, file), filelist);
@@ -33,6 +56,7 @@ const walkSync = function(dir, filelist) {
         };
 //https://gist.github.com/kethinov/6658166
 
+
 ipcMain.on('open-file-dialog', (event) => {
   dialog.showOpenDialog({
     properties: ['openFile', 'openDirectory']
@@ -44,14 +68,15 @@ ipcMain.on('open-file-dialog', (event) => {
 })
 
 
-ipcMain.on('open-file-dialog-2', (event) => {
+ipcMain.on('open-file-dialog-2', (event,ext) => {
   dialog.showOpenDialog({
     properties: ['openFile', 'openDirectory']
   }, (files) => {
     if (files) {
       console.log('files : '+files+ 'type : '+ typeof String(files)  );
       var liste=[];
-      walkSync(String(files),liste);
+      walkSync(String(files),liste,String(ext));
+      //  walkSync2(String(files),liste);
       for( i in liste){
         console.log('-> '+liste[i])
       }

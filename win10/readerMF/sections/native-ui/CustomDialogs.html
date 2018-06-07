@@ -3,9 +3,18 @@
 
     <div class="demo">
       <div class="demo-controls">
-        <button class="demo-button" id="select-directory-2">Ouvrir Dossier</button>
+        <div class="checkbox-type" id="checkbox-type">
+          <h5 class="nav-category">
+            <svg class="nav-icon"><use xlink:href="assets/img/icons.svg#icon-native-ui"></use></svg>
+            Type </h5>
+           <label><input type="checkbox" id="txtType" value="txt"> .txt  </label>
+          <label><input type="checkbox" id="mdType" value="md" > .md </label>
+           <label> <input type="checkbox" id="htmlType" value="html"> .html </label>
+        </div>
+      <div class="pl-3">
+        <button class="demo-button p-1" id="select-directory-2">Ouvrir Dossier</button>
         <span class="demo-response" id="selected-file-2"></span>
-
+      </div>
       </div>
       <hr>
       <div>
@@ -33,11 +42,8 @@
 
       require('./renderer-process/native-ui/dialogs/open-folder')
       require('./renderer-process/native-ui/dialogs/show-MD-files')
-      require('./renderer-process/native-ui/dialogs/pingPong')
+      require('./renderer-process/native-ui/dialogs/controls')
 
-    //  require('./renderer-process/native-ui/dialogs/error')
-    //  require('./renderer-process/native-ui/dialogs/information')
-    //  require('./renderer-process/native-ui/dialogs/save')
 
 
     </script>
