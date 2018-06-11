@@ -34,10 +34,9 @@ for (var i=0, len=boxList.length; i<len; i++) {
 
 selectDirBtn2.addEventListener('click', (event) => {
  // on choisit l'extension à filtrer
- //var extension = '.'+selectedExtension();
- var ext = '.txt';
-console.log(ext);
-  ipcRenderer.send('open-file-dialog-2',ext)
+ var extension = '.'+selectedExtension();
+console.log(extension);
+  ipcRenderer.send('open-file-dialog-2',extension)
 })
 
 ipcRenderer.on('selected-directory', (event, path) => {
