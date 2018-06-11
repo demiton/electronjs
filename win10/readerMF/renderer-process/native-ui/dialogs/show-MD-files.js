@@ -24,8 +24,11 @@ ipcRenderer.on('available-file', (event, list) => {
   }
 });
 
-ipcRenderer.on('chosen-file', (event, content) => {
+ipcRenderer.on('chosen-file', (event, content,path) => {
   document.getElementById('chosen-file').textContent = content
+  var att = document.createAttribute("data-pathFile");        // Create a "href" attribute
+  att.value = path;
+  document.getElementById('chosen-file').setAttributeNode(att);     
 
 });
 
@@ -37,17 +40,38 @@ ipcRenderer.on('edited-file', (event, content) => {
 
 ipcRenderer.on('modification', (event, content) => {
   var x = document.createElement("TEXTAREA");
-  x.className='txt-box';
+  x.className='txt-box m-3';
+  x.id = 'txt-box';
 
   var t = document.createTextNode(content);
   x.appendChild(t);
-  document.getElementById('modification').appendChild(x);
+  document.getElementById('text-modification').innerHTML = '';
+  document.getElementById('text-modification').appendChild(x);
 
   // on ajoute aussi les boutons de modification
   var node = document.createElement("button");
-  node.className='demo-button';
+  node.className='demo-button m-3';
+  node.setAttribute('id','action-preview');
   //node.setAttribute('id','select-file-'+i);
-  var textnode = document.createTextNode('recharger');
+  var textnode = document.createTextNode('Prévisualiser');
   node.appendChild(textnode);
-  document.getElementById("button-modification").appendChild(node);
+  document.getElementById('button-modification').innerHTML='';
+  document.getElementById('button-modification').appendChild(node);
+  //
+  var nodeV = document.createElement("button");
+  nodeV.className='demo-button m-3';
+  nodeV.setAttribute('id','action-reload');
+  //node.setAttribute('id','select-file-'+i);
+  var textnodeV = document.createTextNode('Recharger');
+  nodeV.appendChild(textnodeV);
+  document.getElementById('button-modification').appendChild(nodeV);
+  //
+  var nodeS = document.createElement("button");
+  nodeS.className='demo-button m-3';
+  nodeS.setAttribute('id','action-save');
+  var textnodeS = document.createTextNode('Sauvegarder');
+  nodeS.appendChild(textnodeS);
+  document.getElementById('button-modification').appendChild(nodeS);
+//
+
   });
