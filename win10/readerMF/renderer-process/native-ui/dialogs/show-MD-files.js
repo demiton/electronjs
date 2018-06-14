@@ -43,6 +43,9 @@ ipcRenderer.on('edited-file', (event, content) => {
 });
 
 ipcRenderer.on('edited-md-file', (event, content) => {
+  // yaml formulaire
+
+  //md text content
   document.getElementById('edited-file').textContent = content
 
 });
