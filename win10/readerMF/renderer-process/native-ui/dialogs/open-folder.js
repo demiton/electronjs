@@ -60,8 +60,15 @@ $(document).on('mouseover', 'button', function(e) {
   if(String(selectedId).indexOf('select-file')!=-1){
     const selectFileBtn = document.getElementById(selectedId);
     selectFileBtn.addEventListener('click', (event) => {
-      var content = selectFileBtn.innerHTML;
-      ipcRenderer.send('read-file',content);
+      //var content = selectFileBtn.innerHTML;
+      var content = selectFileBtn.dataset.pathfile;
+      console.log('path : '+ selectFileBtn.dataset.pathfile)
+      if(content != undefined){
+          ipcRenderer.send('read-file',content);
+      }else{
+        console.log('path : '+content);
+      }
+
     })
   }
   else if(String(selectedId).indexOf('action')!=-1){

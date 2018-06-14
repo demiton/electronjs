@@ -133,7 +133,7 @@ ipcMain.on('open-file-dialog-2', (event,ext) => {
       walkSync4(String(files),liste,ext);
       //liste=listFiles(String(files),String(ext));
       for( i in liste){
-        console.log('-> '+liste[i])
+        console.log('-> '+path.basename(liste[i]))
       }
       event.sender.send('selected-directory-2', files)
       event.sender.send('available-file', liste)
@@ -143,13 +143,24 @@ ipcMain.on('open-file-dialog-2', (event,ext) => {
 
 
 
-ipcMain.on('read-file', (event, content) => {
-var liste=content;
-var text = fs.readFileSync(content,'latin1')
-var path = content;
-//console.log ('text :'+ text);
-      event.sender.send('chosen-file', text,path)
-      event.sender.send('edited-file', text)
-      event.sender.send('modification', text)
+ipcMain.on('read-file', (event, filepath) => {
+
+  var text = fs.readFileSync(filepath,'latin1')
+  var ext = path.extname(filepath);
+
+  switch (ext) {
+    case 'txt':
+    event.sender.send('chosen-file',text,filepath)
+    event.sender.send('edited-file',text)
+    event.sender.send('modification',text)
+      break;
+
+      case 'md':
+console.log('Aucune action pour ' + ext + '.');
+        break;
+    default:
+      console.log('Aucune action associée à ' + ext + '.');
+  }
+
 
 })

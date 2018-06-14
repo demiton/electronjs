@@ -77,6 +77,8 @@
   background-color: transparent;
   cursor: default;
   outline: none;
+  margin-bottom: .25rem;
+  margin-left: .25rem;
 }
 .nav-button:hover,
 .nav-button:focus:not(.is-selected) {

@@ -1,16 +1,19 @@
 var $ = require('jquery');
 
 const {ipcRenderer} = require('electron')
+const path = require('path');
 
 ipcRenderer.on('available-file', (event, list) => {
-  document.getElementById('available-file').textContent = `Fichiers disponibles : `
+  document.getElementById('available-file').textContent = '';
+
   console.log('list size: '+list.length);
   if(list.length>0){
     for(var i in list){
       var node = document.createElement("button");
-      node.className='item roundedCorner nav-button';
+      node.className=' roundedCorner nav-button col-4';
       node.setAttribute('id','select-file-'+i);
-      var textnode = document.createTextNode(list[i]);
+      node.setAttribute('data-pathFile',list[i]);
+      var textnode = document.createTextNode(path.basename(list[i]));
       node.appendChild(textnode);
       document.getElementById("available-file").appendChild(node);
     }
@@ -22,13 +25,14 @@ ipcRenderer.on('available-file', (event, list) => {
     node.appendChild(textnode);
     document.getElementById('available-file').appendChild(node);
   }
+
 });
 
 ipcRenderer.on('chosen-file', (event, content,path) => {
   document.getElementById('chosen-file').textContent = content
   var att = document.createAttribute("data-pathFile");        // Create a "href" attribute
   att.value = path;
-  document.getElementById('chosen-file').setAttributeNode(att);     
+  document.getElementById('chosen-file').setAttributeNode(att);
 
 });
 
@@ -37,6 +41,12 @@ ipcRenderer.on('edited-file', (event, content) => {
   document.getElementById('edited-file').textContent = content
 
 });
+
+ipcRenderer.on('edited-md-file', (event, content) => {
+  document.getElementById('edited-file').textContent = content
+
+});
+
 
 ipcRenderer.on('modification', (event, content) => {
   var x = document.createElement("TEXTAREA");
