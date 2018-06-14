@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/nativize.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/section.css">
+  <link rel="stylesheet" href="assets/css/demo.css">
+  <link rel="stylesheet" href="assets/css/customItem.css">
+  <link rel="stylesheet" href="assets/css/github.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/summernote/dist/summernote.css" >
+  <link rel="import" href="sections/about.html">
+  <link rel="import" href="sections/native-ui/customDialogs.html">
+
+
+</head>
+<body>
+  <nav class="nav js-nav">
+    <header class="nav-header">
+      <h1 class="nav-title">Mon Application <strong>ElectronJS</strong></h1>
+      <svg class="nav-header-icon"><use xlink:href="assets/img/icons.svg#icon-electron"></use></svg>
+    </header>
+    <div class="nav-item u-category-native-ui">
+      <h5 class="nav-category">
+        <svg class="nav-icon"><use xlink:href="assets/img/icons.svg#icon-native-ui"></use></svg>
+        User Interface</h5>
+        <button type="button" id="button-dialogs" data-section="dialogs" class="nav-button">Use system <em>dialogs</em></button>
+      </div>
+<!--
+      <div class="demo">
+        <div class="demo-controls">
+            <button class="demo-button" id="select-directory">Open Folder</button>
+          <span class="demo-response" id="selected-file"></span>
+        </div>
+      </div>
+-->
+    </nav>
+
+
+    <main class="content js-content"></main>
+
+
+
+
+
+    <script>
+    require('./assets/imports')
+    require('./assets/ex-links')
+    require('./assets/nav')
+    require('./assets/demo-btns')
+    require('./assets/code-blocks')
+    require('./assets/normalize-shortcuts')
+    // JS node_modules
+    require('./node_modules/summernote/dist/summernote')
+    </script>
+  </body>
+  </html>

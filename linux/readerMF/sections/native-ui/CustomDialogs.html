@@ -1,0 +1,70 @@
+<template class="task-template">
+  <section id="dialogs-section" class="section js-section u-category-native-ui">
+
+    <div class="demo">
+      <div class="demo-controls">
+        <button class="demo-button" id="select-directory-2">Ouvrir Dossier</button>
+        <span class="demo-response" id="selected-file-2"></span>
+
+      </div>
+      <hr>
+      <div>
+
+      <div id="available-file"></div>
+    </div>
+    <hr>
+    <div>
+<div class="row">
+    <div class="col-6" id="chosen-file"></div>
+    <div class="col-6" id="edited-file"></div>
+  </div>
+  <div class="row">
+    <form id="summernoteForm" method="post" class="form-horizontal">
+  <div class="form-group">
+      <label class="col-xs-3 control-label">Post title</label>
+      <div class="col-xs-5">
+          <input type="text" class="form-control" name="title" />
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-xs-3 control-label">Post content</label>
+      <div class="col-xs-9">
+          <textarea class="form-control" name="content" style="height: 400px;"></textarea>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-xs-9 col-xs-offset-3">
+          <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+  </div>
+</form>
+
+    </div>
+</div>
+      <div>
+
+      </div>
+      </div>
+
+    <script type="text/javascript">
+
+      require('./renderer-process/native-ui/dialogs/open-folder')
+      require('./renderer-process/native-ui/dialogs/show-MD-files')
+      require('./renderer-process/native-ui/dialogs/pingPong')
+
+    //  require('./renderer-process/native-ui/dialogs/error')
+    //  require('./renderer-process/native-ui/dialogs/information')
+    //  require('./renderer-process/native-ui/dialogs/save')
+
+
+    </script>
+
+
+<script type"text/javascript">
+
+</script>
+
+  </section>
+</template>
