@@ -2,6 +2,8 @@ var $ = require('jquery');
 
 const {ipcRenderer} = require('electron')
 const path = require('path');
+var yamlFront = require('yaml-front-matter');
+
 
 ipcRenderer.on('available-file', (event, list) => {
   document.getElementById('available-file').textContent = '';
@@ -38,16 +40,74 @@ ipcRenderer.on('chosen-file', (event, content,path) => {
 
 
 ipcRenderer.on('edited-file', (event, content) => {
+
   document.getElementById('edited-file').textContent = content
 
 });
-
-ipcRenderer.on('edited-md-file', (event, content) => {
+/*
+ipcRenderer.on('modification-md-file', (event, content) => {
   // yaml formulaire
+  document.getElementById('text-modification').textContent = '';
+  var JsonForm= yamlFront.loadFront(content);
+//  var objects = JSON.parse(JsonForm);
+    var obj = yamlFront.loadFront(content);
+    Object.keys(obj).forEach(function(key) {
+      console.log(key, obj[key]);
+      var node = document.createElement("button");
+      node.className=' roundedCorner nav-button col-4';
+      node.setAttribute('id','select-file-'+key);
+      //node.setAttribute('data-pathFile',list[i]);
+      console.log('ob'+obj[key]+ ' type : '+ (typeof obj[key]))
+      var str = obj[key];
+      var textnode = document.createTextNode(str);
+      console.log('-- '+textnode)
+      if(textnode!=null){
+        node.appendChild(textnode);
+        document.getElementById("text-modification").appendChild(node);
+      }
+    });
+});
+*/
 
-  //md text content
-  document.getElementById('edited-file').textContent = content
+ipcRenderer.on('modification-md-file', (event, content) => {
+  // yaml formulaire
+  document.getElementById('text-modification').textContent = '';
 
+    var obj = yamlFront.loadFront(content);
+    var myform = document.createElement("FORM");
+    myform.name='myForm';
+    myform.method='POST';
+
+    Object.keys(obj).forEach(function(key) {
+      console.log(key, obj[key]);
+      var my_input;
+      if(String(key) != '__content'){
+        my_input = document.createElement('INPUT');
+        my_input.className='m-1';
+      }else{
+        my_input = document.createElement('TEXTAREA');
+        my_input.className='txt-box m-2';
+      }
+
+      var my_inputLabel=document.createElement('LABEL');
+      my_input.type='TEXT';
+      my_input.name=key;
+      my_input.value=obj[key];
+      my_input.setAttribute('id','select-file-'+key);
+      ///
+      my_inputLabel.type='TEXT';
+
+      //my_inputLabel.name=key;
+      my_inputLabel.innerText=key;
+      my_inputLabel.setAttribute('for','select-label-'+key);
+      my_inputLabel.appendChild(my_input);
+      myform.appendChild(my_inputLabel);
+    //  myform.appendChild(my_input);
+    //  node.className=' roundedCorner nav-button col-4';
+
+      //node.setAttribute('data-pathFile',list[i]);
+        document.getElementById("text-modification").appendChild(myform);
+    });
 });
 
 

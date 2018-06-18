@@ -149,14 +149,16 @@ ipcMain.on('read-file', (event, filepath) => {
   var ext = path.extname(filepath);
 
   switch (ext) {
-    case 'txt':
+    case '.txt':
     event.sender.send('chosen-file',text,filepath)
     event.sender.send('edited-file',text)
     event.sender.send('modification',text)
       break;
 
-      case 'md':
-console.log('Aucune action pour ' + ext + '.');
+      case '.md':
+        event.sender.send('chosen-file',text,filepath)
+        event.sender.send('edited-file',text)
+        event.sender.send('modification-md-file',text)
         break;
     default:
       console.log('Aucune action associée à ' + ext + '.');

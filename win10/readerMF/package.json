@@ -50,7 +50,8 @@
     "bootstrap":"~4.1.1",
     "popper.js":"^1.14.3",
     "summernote":"~0.8.10",
-    "formvalidation":"~0.6.2-dev"
+    "formvalidation":"~0.6.2-dev",
+    "yaml-front-matter":"^4.0.0"
   },
   "dependencies": {
     "electron-settings": "^3.0.7",
